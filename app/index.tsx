@@ -42,7 +42,7 @@ const index = () => {
 			</View>
 			<View style={{ flex: 1 }}></View>
 			{/* TODO: Replace this with router.replace once testing is over. */}
-			<Pressable onPress={() => router.push("/(tabs)")}>
+			<Pressable onPress={() => router.push("/generator")}>
 				<View style={styles.button}>
 					<Ionicons
 						name="color-palette-outline"

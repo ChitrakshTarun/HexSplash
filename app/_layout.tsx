@@ -59,9 +59,13 @@ function RootLayoutNav() {
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen
-					name="(tabs)"
+					name="generator"
 					options={{ headerShown: false }}
 				/>
+				{/* <Stack.Screen
+					name="(tabs)"
+					options={{ headerShown: false }}
+				/> */}
 			</Stack>
 		</ThemeProvider>
 	);
