@@ -16,4 +16,5 @@ A simple to use color pallete generator app, which generates random colors for y
 - `expo-router` File-based Routing & Navigation
 - `react-native-reanimated` App Animations
 - `react-native-gesture-handler` Gesture Handling
-- `expo-linear`
+- `expo-linear-gradient` Gradient Backgrounds
+- `expo-font` Google Fonts
