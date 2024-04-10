@@ -1,12 +1,10 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
-import { Pressable } from "react-native";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-import CustomHeader from "@/components/CustomHeader";
 
 function TabBarIcon(props: {
 	name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -31,12 +29,7 @@ export default function TabLayout() {
 				headerShown: useClientOnlyValue(false, true),
 			}}
 		>
-			<Tabs.Screen
-				name="index"
-				options={{
-					headerTitle: () => <CustomHeader />,
-				}}
-			/>
+			<Tabs.Screen name="index" />
 			<Tabs.Screen
 				name="two"
 				options={{

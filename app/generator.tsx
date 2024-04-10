@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, StatusBar, Pressable } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import InfoModal from "@/components/InfoModal";
 
 const Generator = () => {
 	const getRandomHexCode = (): string => {
@@ -13,13 +14,19 @@ const Generator = () => {
 		return hexCode;
 	};
 
+	const [modalVisible, setModalVisible] = useState(false);
+
 	const [color1, setColor1] = useState<string>(getRandomHexCode);
 	const [color2, setColor2] = useState<string>(getRandomHexCode);
 	const [color3, setColor3] = useState<string>(getRandomHexCode);
 	const [color4, setColor4] = useState<string>(getRandomHexCode);
 	const [color5, setColor5] = useState<string>(getRandomHexCode);
 
-	const [lock, setLock] = useState<boolean>(false);
+	const [lock1, setLock1] = useState<boolean>(false);
+	const [lock2, setLock2] = useState<boolean>(false);
+	const [lock3, setLock3] = useState<boolean>(false);
+	const [lock4, setLock4] = useState<boolean>(false);
+	const [lock5, setLock5] = useState<boolean>(false);
 
 	/* 
     Copilot clutched out on this code. 
@@ -36,11 +43,11 @@ const Generator = () => {
 	};
 
 	const generateRandomHexCodes = (): void => {
-		setColor1(getRandomHexCode());
-		setColor2(getRandomHexCode());
-		setColor3(getRandomHexCode());
-		setColor4(getRandomHexCode());
-		setColor5(getRandomHexCode());
+		lock1 ? null : setColor1(getRandomHexCode());
+		lock2 ? null : setColor2(getRandomHexCode());
+		lock3 ? null : setColor3(getRandomHexCode());
+		lock4 ? null : setColor4(getRandomHexCode());
+		lock5 ? null : setColor5(getRandomHexCode());
 		// console.log(color1, color2, color3, color4, color5);
 	};
 
@@ -51,8 +58,9 @@ const Generator = () => {
 	return (
 		<View style={styles.container}>
 			<StatusBar hidden={true} />
+			{/* VIEW 1 */}
 			<Pressable
-				onPress={() => setColor1(getRandomHexCode)}
+				onPress={() => (lock1 ? null : setColor1(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color1 }]}
 			>
 				<Text
@@ -63,15 +71,20 @@ const Generator = () => {
 				>
 					{color1}
 				</Text>
-
-				<Ionicons
-					name="lock-closed"
-					color={isColorDark(color1) ? "white" : "black"}
-					size={28}
-				/>
+				<Pressable
+					style={styles.lockContainer}
+					onPress={() => (lock1 ? setLock1(false) : setLock1(true))}
+				>
+					<Ionicons
+						name={lock1 ? "lock-closed" : "lock-open"}
+						color={isColorDark(color1) ? "white" : "black"}
+						size={28}
+					/>
+				</Pressable>
 			</Pressable>
+			{/* VIEW 2 */}
 			<Pressable
-				onPress={() => setColor2(getRandomHexCode)}
+				onPress={() => (lock2 ? null : setColor2(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color2 }]}
 			>
 				<Text
@@ -82,14 +95,20 @@ const Generator = () => {
 				>
 					{color2}
 				</Text>
-				<Ionicons
-					name="lock-closed"
-					color={isColorDark(color2) ? "white" : "black"}
-					size={28}
-				/>
+				<Pressable
+					style={styles.lockContainer}
+					onPress={() => (lock2 ? setLock2(false) : setLock2(true))}
+				>
+					<Ionicons
+						name={lock2 ? "lock-closed" : "lock-open"}
+						color={isColorDark(color2) ? "white" : "black"}
+						size={28}
+					/>
+				</Pressable>
 			</Pressable>
+			{/* VIEW 3 */}
 			<Pressable
-				onPress={() => setColor3(getRandomHexCode)}
+				onPress={() => (lock3 ? null : setColor3(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color3 }]}
 			>
 				<Text
@@ -100,14 +119,20 @@ const Generator = () => {
 				>
 					{color3}
 				</Text>
-				<Ionicons
-					name="lock-closed"
-					color={isColorDark(color3) ? "white" : "black"}
-					size={28}
-				/>
+				<Pressable
+					style={styles.lockContainer}
+					onPress={() => (lock3 ? setLock3(false) : setLock3(true))}
+				>
+					<Ionicons
+						name={lock3 ? "lock-closed" : "lock-open"}
+						color={isColorDark(color3) ? "white" : "black"}
+						size={28}
+					/>
+				</Pressable>
 			</Pressable>
+			{/* VIEW 4 */}
 			<Pressable
-				onPress={() => setColor4(getRandomHexCode)}
+				onPress={() => (lock4 ? null : setColor4(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color4 }]}
 			>
 				<Text
@@ -118,14 +143,21 @@ const Generator = () => {
 				>
 					{color4}
 				</Text>
-				<Ionicons
-					name="lock-closed"
-					color={isColorDark(color4) ? "white" : "black"}
-					size={28}
-				/>
+				<Pressable
+					style={styles.lockContainer}
+					onPress={() => (lock4 ? setLock4(false) : setLock4(true))}
+				>
+					<Ionicons
+						name={lock4 ? "lock-closed" : "lock-open"}
+						color={isColorDark(color4) ? "white" : "black"}
+						size={28}
+						onPress={() => (lock4 ? setLock4(false) : setLock4(true))}
+					/>
+				</Pressable>
 			</Pressable>
+			{/* VIEW 5 */}
 			<Pressable
-				onPress={() => setColor5(getRandomHexCode)}
+				onPress={() => (lock5 ? null : setColor5(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color5 }]}
 			>
 				<Text
@@ -136,18 +168,69 @@ const Generator = () => {
 				>
 					{color5}
 				</Text>
-				<Ionicons
-					name="lock-closed"
-					color={isColorDark(color5) ? "white" : "black"}
-					size={28}
-				/>
+				<Pressable
+					style={styles.lockContainer}
+					onPress={() => (lock5 ? setLock5(false) : setLock5(true))}
+				>
+					<Ionicons
+						name={lock5 ? "lock-closed" : "lock-open"}
+						color={isColorDark(color5) ? "white" : "black"}
+						size={28}
+					/>
+				</Pressable>
 			</Pressable>
 			<View style={styles.buttonsContainer}>
+				<Pressable
+					onPress={() => {
+						setModalVisible(true);
+						console.log("Modal fr");
+					}}
+				>
+					<InfoModal
+						visible={modalVisible}
+						onClose={() => setModalVisible(false)}
+					/>
+					<Ionicons
+						name="information-circle-outline"
+						color={"#000000"}
+						size={28}
+					/>
+				</Pressable>
+				<Pressable
+					onPress={() => {
+						setLock1(false);
+						setLock2(false);
+						setLock3(false);
+						setLock4(false);
+						setLock5(false);
+					}}
+				>
+					<Ionicons
+						name="lock-open-outline"
+						color={"#000000"}
+						size={22}
+					/>
+				</Pressable>
 				<Pressable
 					style={styles.button}
 					onPress={generateRandomHexCodes}
 				>
 					<Text style={styles.buttonText}>Generate</Text>
+				</Pressable>
+
+				<Pressable>
+					<Ionicons
+						name="save-outline"
+						color={"#000000"}
+						size={24}
+					/>
+				</Pressable>
+				<Pressable>
+					<Ionicons
+						name="share-outline"
+						color={"#000000"}
+						size={22}
+					/>
 				</Pressable>
 			</View>
 		</View>
@@ -177,13 +260,19 @@ const styles = StyleSheet.create({
 		flex: 0.25,
 		flexDirection: "row",
 		justifyContent: "space-around",
-		marginVertical: 20,
+		alignItems: "center",
+		paddingVertical: 14,
+		// gap: 8,
 	},
 	button: {
 		paddingHorizontal: 20,
-		paddingVertical: 10,
 	},
 	buttonText: {
-		fontSize: 16,
+		fontSize: 18,
+	},
+	lockContainer: {
+		position: "absolute",
+		right: 30,
+		padding: 10,
 	},
 });

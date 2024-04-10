@@ -14,6 +14,7 @@ import {
 } from "@expo-google-fonts/merienda";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const index = () => {
 	const router = useRouter();
@@ -31,6 +32,7 @@ const index = () => {
 	}
 	return (
 		<View style={styles.container}>
+			<StatusBar style="light" />
 			<LinearGradient
 				colors={["#F78FAD", "#A16BFE"]}
 				style={styles.background}
