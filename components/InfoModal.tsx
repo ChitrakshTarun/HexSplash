@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { Image } from "react-native";
 import React from "react";
-import { configureLayoutAnimations } from "react-native-reanimated/lib/typescript/reanimated2/core";
+import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 interface InfoModalProps {
 	visible: boolean;
@@ -21,7 +23,79 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 				onPress={onClose}
 			>
 				<View style={styles.modalContent}>
-					<Text>InfoModal</Text>
+					<StatusBar hidden={true} />
+					<Text style={{ fontSize: 20, fontFamily: "Merienda_700Bold" }}>
+						Welcome to HexSplash!
+					</Text>
+					<Image
+						source={require("../assets/images/ColorView.png")}
+						style={{ width: "100%", height: "30%" }}
+						resizeMode="contain"
+					/>
+					<Text style={styles.contentText}>
+						Click on the color view to change it to a randomised colour.
+					</Text>
+					<Text>{"    "}</Text>
+					<Text style={styles.contentText}>
+						Click the Lock (
+						<Ionicons
+							name="lock-open-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{" // "}
+						<Ionicons
+							name="lock-closed-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						) to lock or unlock the view from being randomised.
+					</Text>
+
+					<Image
+						source={require("../assets/images/BottomBar.png")}
+						style={{ width: "100%", height: "16%" }}
+						resizeMode="contain"
+					/>
+					<Text style={styles.contentText}>
+						<Ionicons
+							name="information-circle-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{"    "}
+						View this modal
+					</Text>
+					<Text>{"    "}</Text>
+					<Text style={styles.contentText}>
+						<Ionicons
+							name="lock-open-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{"    "}
+						Unlock all locks
+					</Text>
+					<Text>{"    "}</Text>
+					<Text style={styles.contentText}>
+						<Ionicons
+							name="folder-open-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{"    "}
+						Save your palette
+					</Text>
+					<Text>{"    "}</Text>
+					<Text style={styles.contentText}>
+						<Ionicons
+							name="share-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{"    "}
+						Export your palette
+					</Text>
 				</View>
 			</TouchableOpacity>
 		</Modal>
@@ -33,8 +107,6 @@ export default InfoModal;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		height: "90%",
-		width: "90%",
 	},
 	modalOverlay: {
 		flex: 1,
@@ -43,8 +115,13 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(0, 0, 0, 0.5)",
 	},
 	modalContent: {
+		height: "70%",
+		width: "85%",
 		backgroundColor: "white",
 		padding: 20,
 		borderRadius: 10,
+	},
+	contentText: {
+		fontSize: 16,
 	},
 });
