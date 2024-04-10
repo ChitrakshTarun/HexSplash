@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, StatusBar, Pressable } from "react-native";
 import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 const Generator = () => {
 	const getRandomHexCode = (): string => {
@@ -8,6 +9,7 @@ const Generator = () => {
 		for (let i = 0; i < 6; i++) {
 			hexCode += letters[Math.floor(Math.random() * 16)];
 		}
+		// console.log(hexCode);
 		return hexCode;
 	};
 
@@ -17,11 +19,13 @@ const Generator = () => {
 	const [color4, setColor4] = useState<string>(getRandomHexCode);
 	const [color5, setColor5] = useState<string>(getRandomHexCode);
 
+	const [lock, setLock] = useState<boolean>(false);
+
 	/* 
     Copilot clutched out on this code. 
     This function 
     */
-	function isColorDark(color: string) {
+	const isColorDark = (color: string) => {
 		const c = color.substring(1);
 		const rgb = parseInt(c, 16);
 		const r = (rgb >> 16) & 0xff;
@@ -29,7 +33,7 @@ const Generator = () => {
 		const b = (rgb >> 0) & 0xff;
 		const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 		return luma < 128;
-	}
+	};
 
 	const generateRandomHexCodes = (): void => {
 		setColor1(getRandomHexCode());
@@ -37,13 +41,20 @@ const Generator = () => {
 		setColor3(getRandomHexCode());
 		setColor4(getRandomHexCode());
 		setColor5(getRandomHexCode());
-		console.log(color1, color2, color3, color4, color5);
+		// console.log(color1, color2, color3, color4, color5);
+	};
+
+	const testFunction = (): void => {
+		console.log("Hello World!");
 	};
 
 	return (
 		<View style={styles.container}>
 			<StatusBar hidden={true} />
-			<View style={[styles.view, { backgroundColor: color1 }]}>
+			<Pressable
+				onPress={() => setColor1(getRandomHexCode)}
+				style={[styles.view, { backgroundColor: color1 }]}
+			>
 				<Text
 					style={[
 						styles.text,
@@ -52,8 +63,17 @@ const Generator = () => {
 				>
 					{color1}
 				</Text>
-			</View>
-			<View style={[styles.view, { backgroundColor: color2 }]}>
+
+				<Ionicons
+					name="lock-closed"
+					color={isColorDark(color1) ? "white" : "black"}
+					size={28}
+				/>
+			</Pressable>
+			<Pressable
+				onPress={() => setColor2(getRandomHexCode)}
+				style={[styles.view, { backgroundColor: color2 }]}
+			>
 				<Text
 					style={[
 						styles.text,
@@ -62,8 +82,16 @@ const Generator = () => {
 				>
 					{color2}
 				</Text>
-			</View>
-			<View style={[styles.view, { backgroundColor: color3 }]}>
+				<Ionicons
+					name="lock-closed"
+					color={isColorDark(color2) ? "white" : "black"}
+					size={28}
+				/>
+			</Pressable>
+			<Pressable
+				onPress={() => setColor3(getRandomHexCode)}
+				style={[styles.view, { backgroundColor: color3 }]}
+			>
 				<Text
 					style={[
 						styles.text,
@@ -72,8 +100,16 @@ const Generator = () => {
 				>
 					{color3}
 				</Text>
-			</View>
-			<View style={[styles.view, { backgroundColor: color4 }]}>
+				<Ionicons
+					name="lock-closed"
+					color={isColorDark(color3) ? "white" : "black"}
+					size={28}
+				/>
+			</Pressable>
+			<Pressable
+				onPress={() => setColor4(getRandomHexCode)}
+				style={[styles.view, { backgroundColor: color4 }]}
+			>
 				<Text
 					style={[
 						styles.text,
@@ -82,8 +118,16 @@ const Generator = () => {
 				>
 					{color4}
 				</Text>
-			</View>
-			<View style={[styles.view, { backgroundColor: color5 }]}>
+				<Ionicons
+					name="lock-closed"
+					color={isColorDark(color4) ? "white" : "black"}
+					size={28}
+				/>
+			</Pressable>
+			<Pressable
+				onPress={() => setColor5(getRandomHexCode)}
+				style={[styles.view, { backgroundColor: color5 }]}
+			>
 				<Text
 					style={[
 						styles.text,
@@ -92,10 +136,20 @@ const Generator = () => {
 				>
 					{color5}
 				</Text>
-			</View>
-			<Pressable onPress={generateRandomHexCodes}>
-				<Text>Test</Text>
+				<Ionicons
+					name="lock-closed"
+					color={isColorDark(color5) ? "white" : "black"}
+					size={28}
+				/>
 			</Pressable>
+			<View style={styles.buttonsContainer}>
+				<Pressable
+					style={styles.button}
+					onPress={generateRandomHexCodes}
+				>
+					<Text style={styles.buttonText}>Generate</Text>
+				</Pressable>
+			</View>
 		</View>
 	);
 };
@@ -104,15 +158,32 @@ export default Generator;
 
 const styles = StyleSheet.create({
 	container: {
+		// marginHorizontal: 10,
 		flex: 1,
 	},
 	view: {
 		flex: 1,
-		justifyContent: "center",
+		flexDirection: "row",
 		alignItems: "center",
+		paddingHorizontal: 30,
 	},
 	text: {
 		fontSize: 28,
-		fontFamily: "Merienda_700Bold",
+		fontWeight: "bold",
+		flex: 1,
+		alignItems: "center",
+	},
+	buttonsContainer: {
+		flex: 0.25,
+		flexDirection: "row",
+		justifyContent: "space-around",
+		marginVertical: 20,
+	},
+	button: {
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+	},
+	buttonText: {
+		fontSize: 16,
 	},
 });

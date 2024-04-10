@@ -37,7 +37,7 @@ const index = () => {
 			/>
 			<View style={styles.textLogoContainer}>
 				<Text style={styles.textLogo}>HexSplash</Text>
-				<Text style={styles.subTextLogo}>Generate your color palette</Text>
+				<Text style={styles.subTextLogo}>Generate a color palette</Text>
 				<Text style={styles.subTextLogo}>for your design </Text>
 			</View>
 			<View style={{ flex: 1 }}></View>
@@ -70,6 +70,7 @@ export default index;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		padding: 20,
 	},
 	background: {
 		...StyleSheet.absoluteFillObject,
