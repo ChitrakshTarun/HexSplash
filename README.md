@@ -23,9 +23,11 @@ Color palette generator app, generating 5 random colours for being used as desig
 
 # App Screenshots
 
-![Generator](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotGenerator?raw=true)
-![Home Page](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotModal?raw=true)
-![Export Page](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotExport?raw=true)
+<div>
+<img src="https://github.com/ChitrakshTarun/HexSplash/blob/main/assets/screenshots/AppScreenshotGenerator.png" height="500">
+<img src="https://github.com/ChitrakshTarun/HexSplash/blob/main/assets/screenshots/AppScreenshotModal.png" height="500">
+<img src="https://github.com/ChitrakshTarun/HexSplash/blob/main/assets/screenshots/AppScreenshotExport.png" height="500">
+</div>
 
 # Run Locally
 
