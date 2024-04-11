@@ -2,15 +2,16 @@ import { StyleSheet, Text, View, StatusBar, Pressable } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import InfoModal from "@/components/InfoModal";
+import { useRouter } from "expo-router";
 
 const Generator = () => {
+	const router = useRouter();
 	const getRandomHexCode = (): string => {
 		const letters = "0123456789ABCDEF";
 		let hexCode = "#";
 		for (let i = 0; i < 6; i++) {
 			hexCode += letters[Math.floor(Math.random() * 16)];
 		}
-		// console.log(hexCode);
 		return hexCode;
 	};
 
@@ -30,9 +31,10 @@ const Generator = () => {
 
 	/* 
     Copilot clutched out on this code. 
-    This function 
+    Function finds the luma of the color and returns if it is < 128.
+	Using this to determine whether the text above the color should be white or black.
     */
-	const isColorDark = (color: string) => {
+	const isColorDark = (color: string): boolean => {
 		const c = color.substring(1);
 		const rgb = parseInt(c, 16);
 		const r = (rgb >> 16) & 0xff;
@@ -48,7 +50,6 @@ const Generator = () => {
 		lock3 ? null : setColor3(getRandomHexCode());
 		lock4 ? null : setColor4(getRandomHexCode());
 		lock5 ? null : setColor5(getRandomHexCode());
-		// console.log(color1, color2, color3, color4, color5);
 	};
 
 	const testFunction = (): void => {
@@ -183,7 +184,6 @@ const Generator = () => {
 				<Pressable
 					onPress={() => {
 						setModalVisible(true);
-						console.log("Modal fr");
 					}}
 				>
 					<InfoModal
@@ -196,6 +196,20 @@ const Generator = () => {
 						size={28}
 					/>
 				</Pressable>
+				<Pressable onPress={() => router.push("/settings")}>
+					<Ionicons
+						name="settings-outline"
+						color={"#000000"}
+						size={24}
+					/>
+				</Pressable>
+				<Pressable
+					style={styles.button}
+					onPress={generateRandomHexCodes}
+				>
+					<Text style={styles.buttonText}>Generate</Text>
+				</Pressable>
+
 				<Pressable
 					onPress={() => {
 						setLock1(false);
@@ -209,20 +223,6 @@ const Generator = () => {
 						name="lock-open-outline"
 						color={"#000000"}
 						size={22}
-					/>
-				</Pressable>
-				<Pressable
-					style={styles.button}
-					onPress={generateRandomHexCodes}
-				>
-					<Text style={styles.buttonText}>Generate</Text>
-				</Pressable>
-
-				<Pressable>
-					<Ionicons
-						name="save-outline"
-						color={"#000000"}
-						size={24}
 					/>
 				</Pressable>
 				<Pressable>
@@ -241,7 +241,6 @@ export default Generator;
 
 const styles = StyleSheet.create({
 	container: {
-		// marginHorizontal: 10,
 		flex: 1,
 	},
 	view: {

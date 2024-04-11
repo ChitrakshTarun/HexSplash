@@ -24,7 +24,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 			>
 				<View style={styles.modalContent}>
 					<StatusBar hidden={true} />
-					<Text style={{ fontSize: 20, fontFamily: "Merienda_700Bold" }}>
+					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
 						Welcome to HexSplash!
 					</Text>
 					<Image
@@ -33,7 +33,8 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 						resizeMode="contain"
 					/>
 					<Text style={styles.contentText}>
-						Click on the color view to change it to a randomised colour.
+						Click on the color view to change it to a randomised color, or click
+						the Generate button below to randomise all.
 					</Text>
 					<Text>{"    "}</Text>
 					<Text style={styles.contentText}>
@@ -69,22 +70,22 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 					<Text>{"    "}</Text>
 					<Text style={styles.contentText}>
 						<Ionicons
+							name="settings-outline"
+							color={"#000000"}
+							size={16}
+						/>
+						{"    "}
+						App Settings
+					</Text>
+					<Text>{"    "}</Text>
+					<Text style={styles.contentText}>
+						<Ionicons
 							name="lock-open-outline"
 							color={"#000000"}
 							size={16}
 						/>
 						{"    "}
 						Unlock all locks
-					</Text>
-					<Text>{"    "}</Text>
-					<Text style={styles.contentText}>
-						<Ionicons
-							name="folder-open-outline"
-							color={"#000000"}
-							size={16}
-						/>
-						{"    "}
-						Save your palette
 					</Text>
 					<Text>{"    "}</Text>
 					<Text style={styles.contentText}>
