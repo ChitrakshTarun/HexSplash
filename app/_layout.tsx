@@ -1,15 +1,12 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native";
+import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
 import { useColorScheme } from "@/components/useColorScheme";
+import Colors from "@/constants/Colors";
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -47,7 +44,8 @@ function RootLayoutNav() {
 	const colorScheme = useColorScheme();
 
 	return (
-		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+		// 💀 average ternary operator TODO: fix this fr.
+		<ThemeProvider value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}>
 			<Stack>
 				<Stack.Screen
 					name="index"
@@ -62,8 +60,11 @@ function RootLayoutNav() {
 					options={{
 						headerTitle: "Settings",
 						headerShadowVisible: false,
-						headerStyle: { backgroundColor: "#f2f2f2" },
 					}}
+				/>
+				<Stack.Screen
+					name="sharepalette"
+					options={{ headerTitle: "Export", headerShadowVisible: false }}
 				/>
 			</Stack>
 		</ThemeProvider>

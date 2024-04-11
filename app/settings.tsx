@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Fontisto, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const SettingsPage = () => {
 	return (
@@ -10,9 +10,7 @@ const SettingsPage = () => {
 				color={"#e0e0e0"}
 				size={256}
 			/>
-			<Text style={styles.contentText}>
-				There are no settings to be customised... yet!
-			</Text>
+			<Text style={styles.contentText}>There are no settings to be customised... yet!</Text>
 		</View>
 	);
 };
@@ -21,6 +19,7 @@ export default SettingsPage;
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: "#fff",
 		flex: 1,
 		justifyContent: "center",
 		gap: 64,

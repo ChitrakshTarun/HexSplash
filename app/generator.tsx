@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import InfoModal from "@/components/InfoModal";
 import { useRouter } from "expo-router";
+import Colors from "@/constants/Colors";
 
 const Generator = () => {
 	const router = useRouter();
@@ -30,10 +31,10 @@ const Generator = () => {
 	const [lock5, setLock5] = useState<boolean>(false);
 
 	/* 
-    Copilot clutched out on this code. 
-    Function finds the luma of the color and returns if it is < 128.
-	Using this to determine whether the text above the color should be white or black.
-    */
+		Copilot clutched out on this code. 
+		Function finds the luma of the color and returns if it is < 128.
+		Using this to determine whether the text above the color should be white or black.
+		*/
 	const isColorDark = (color: string): boolean => {
 		const c = color.substring(1);
 		const rgb = parseInt(c, 16);
@@ -64,14 +65,7 @@ const Generator = () => {
 				onPress={() => (lock1 ? null : setColor1(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color1 }]}
 			>
-				<Text
-					style={[
-						styles.text,
-						{ color: isColorDark(color1) ? "white" : "black" },
-					]}
-				>
-					{color1}
-				</Text>
+				<Text style={[styles.text, { color: isColorDark(color1) ? "white" : "black" }]}>{color1}</Text>
 				<Pressable
 					style={styles.lockContainer}
 					onPress={() => (lock1 ? setLock1(false) : setLock1(true))}
@@ -88,14 +82,7 @@ const Generator = () => {
 				onPress={() => (lock2 ? null : setColor2(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color2 }]}
 			>
-				<Text
-					style={[
-						styles.text,
-						{ color: isColorDark(color2) ? "white" : "black" },
-					]}
-				>
-					{color2}
-				</Text>
+				<Text style={[styles.text, { color: isColorDark(color2) ? "white" : "black" }]}>{color2}</Text>
 				<Pressable
 					style={styles.lockContainer}
 					onPress={() => (lock2 ? setLock2(false) : setLock2(true))}
@@ -112,14 +99,7 @@ const Generator = () => {
 				onPress={() => (lock3 ? null : setColor3(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color3 }]}
 			>
-				<Text
-					style={[
-						styles.text,
-						{ color: isColorDark(color3) ? "white" : "black" },
-					]}
-				>
-					{color3}
-				</Text>
+				<Text style={[styles.text, { color: isColorDark(color3) ? "white" : "black" }]}>{color3}</Text>
 				<Pressable
 					style={styles.lockContainer}
 					onPress={() => (lock3 ? setLock3(false) : setLock3(true))}
@@ -136,14 +116,7 @@ const Generator = () => {
 				onPress={() => (lock4 ? null : setColor4(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color4 }]}
 			>
-				<Text
-					style={[
-						styles.text,
-						{ color: isColorDark(color4) ? "white" : "black" },
-					]}
-				>
-					{color4}
-				</Text>
+				<Text style={[styles.text, { color: isColorDark(color4) ? "white" : "black" }]}>{color4}</Text>
 				<Pressable
 					style={styles.lockContainer}
 					onPress={() => (lock4 ? setLock4(false) : setLock4(true))}
@@ -161,14 +134,7 @@ const Generator = () => {
 				onPress={() => (lock5 ? null : setColor5(getRandomHexCode))}
 				style={[styles.view, { backgroundColor: color5 }]}
 			>
-				<Text
-					style={[
-						styles.text,
-						{ color: isColorDark(color5) ? "white" : "black" },
-					]}
-				>
-					{color5}
-				</Text>
+				<Text style={[styles.text, { color: isColorDark(color5) ? "white" : "black" }]}>{color5}</Text>
 				<Pressable
 					style={styles.lockContainer}
 					onPress={() => (lock5 ? setLock5(false) : setLock5(true))}
@@ -225,7 +191,20 @@ const Generator = () => {
 						size={22}
 					/>
 				</Pressable>
-				<Pressable>
+				<Pressable
+					onPress={() => {
+						router.push({
+							pathname: "/sharepalette",
+							params: {
+								color1: color1,
+								color2: color2,
+								color3: color3,
+								color4: color4,
+								color5: color5,
+							},
+						});
+					}}
+				>
 					<Ionicons
 						name="share-outline"
 						color={"#000000"}
@@ -256,6 +235,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	buttonsContainer: {
+		backgroundColor: Colors.light.background,
 		flex: 0.25,
 		flexDirection: "row",
 		justifyContent: "space-around",
