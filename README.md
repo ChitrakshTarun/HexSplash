@@ -18,6 +18,14 @@ Color palette generator app, generating 5 random colours for being used as desig
 - `react-native-gesture-handler` Gesture Handling
 - `expo-linear-gradient` Gradient Backgrounds
 - `expo-font` Google Fonts
+- `react-native-view-shot` Exporting Palette as Image
+- `react-native-share` Sharing Palette
+
+# App Screenshots
+
+![Generator](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotGenerator?raw=true)
+![Home Page](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotModal?raw=true)
+![Export Page](https://github.com/ChitrakshTarun/HexSplash/tree/main/assets/screenshots/AppScreenshotExport?raw=true)
 
 # Run Locally
 

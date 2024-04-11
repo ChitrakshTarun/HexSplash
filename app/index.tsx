@@ -44,23 +44,24 @@ const index = () => {
 			</View>
 			<View style={{ flex: 1 }}></View>
 			{/* TODO: Replace this with router.replace once testing is over. */}
-			<Pressable onPress={() => router.push("/generator")}>
-				<View style={styles.button}>
+			<Pressable
+				style={styles.button}
+				onPress={() => router.push("/generator")}
+			>
+				<Ionicons
+					name="color-palette-outline"
+					size={32}
+					color="#FFFFFF"
+				/>
+				<View style={{ flex: 1 }}>
+					<Text style={styles.subTextLogo}>Let's Get Started</Text>
+				</View>
+				<View>
 					<Ionicons
-						name="color-palette-outline"
+						name="chevron-forward-outline"
 						size={32}
 						color="#FFFFFF"
 					/>
-					<View style={{ flex: 1 }}>
-						<Text style={styles.subTextLogo}>Let's Get Started</Text>
-					</View>
-					<View>
-						<Ionicons
-							name="chevron-forward-outline"
-							size={32}
-							color="#FFFFFF"
-						/>
-					</View>
 				</View>
 			</Pressable>
 		</View>
