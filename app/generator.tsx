@@ -59,7 +59,6 @@ const Generator = () => {
 
 	return (
 		<View style={styles.container}>
-			<StatusBar hidden={true} />
 			{/* VIEW 1 */}
 			<Pressable
 				onPress={() => (lock1 ? null : setColor1(getRandomHexCode))}

@@ -24,17 +24,14 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
 			>
 				<View style={styles.modalContent}>
 					<StatusBar hidden={true} />
-					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-						Welcome to HexSplash!
-					</Text>
+					<Text style={{ fontSize: 20, fontWeight: "bold" }}>Welcome to HexSplash!</Text>
 					<Image
 						source={require("../assets/images/ColorView.png")}
 						style={{ width: "100%", height: "30%" }}
 						resizeMode="contain"
 					/>
 					<Text style={styles.contentText}>
-						Click on the color view to change it to a randomised color, or click
-						the Generate button below to randomise all.
+						Click on the color view to change it to a randomised color, or click the Generate button below to randomise all.
 					</Text>
 					<Text>{"    "}</Text>
 					<Text style={styles.contentText}>
@@ -108,6 +105,8 @@ export default InfoModal;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	modalOverlay: {
 		flex: 1,
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(0, 0, 0, 0.5)",
 	},
 	modalContent: {
-		height: "70%",
+		height: "auto",
 		width: "85%",
 		backgroundColor: "white",
 		padding: 20,

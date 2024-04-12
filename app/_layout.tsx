@@ -53,18 +53,15 @@ function RootLayoutNav() {
 				/>
 				<Stack.Screen
 					name="generator"
-					options={{ headerShown: false }}
+					options={{ headerShown: false, animation: "fade_from_bottom" }}
 				/>
 				<Stack.Screen
 					name="settings"
-					options={{
-						headerTitle: "Settings",
-						headerShadowVisible: false,
-					}}
+					options={{ headerTitle: "Settings", headerShadowVisible: false, animation: "fade_from_bottom" }}
 				/>
 				<Stack.Screen
 					name="sharepalette"
-					options={{ headerTitle: "Export", headerShadowVisible: false }}
+					options={{ headerTitle: "Export", headerShadowVisible: false, animation: "fade_from_bottom" }}
 				/>
 			</Stack>
 		</ThemeProvider>

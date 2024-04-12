@@ -40,7 +40,7 @@ const SharePalette = () => {
 			<Pressable
 				style={styles.downloadButton}
 				onPress={() => {
-					ref.current.capture().then((uri: string) => {
+					ref.current.capture().then((uri: any) => {
 						console.log("Captured URI", uri);
 						setUri(uri);
 					});
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 		fontFamily: "Merienda_800ExtraBold",
 	},
 	paletteContainer: {
-		width: "90%",
+		width: "95%",
 		aspectRatio: 1,
 		borderWidth: 1,
 		borderRadius: 12,

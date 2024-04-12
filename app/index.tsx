@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
 	},
 	textLogo: {
 		fontFamily: "Merienda_900Black",
-		fontSize: 64,
+		fontSize: 60,
 		color: "#fff",
 		textAlign: "center",
 	},
 	subTextLogo: {
 		fontFamily: "Merienda_400Regular",
 		bottom: 2,
-		fontSize: 24,
+		fontSize: 20,
 		color: "#fff",
 		textAlign: "center",
 		paddingHorizontal: 10,
