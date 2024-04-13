@@ -14,6 +14,12 @@ const SharePalette = () => {
 	const { color1, color2, color3, color4, color5 } = useLocalSearchParams();
 	const ref = useRef();
 	const [uri, setUri] = useState<string>("Test");
+	useEffect(() => {
+		ref.current.capture().then((uri: any) => {
+			console.log("Captured URI", uri);
+			setUri(uri);
+		});
+	}, []);
 	return (
 		<View style={styles.container}>
 			<ViewShot ref={ref}>
@@ -44,13 +50,12 @@ const SharePalette = () => {
 			<Pressable
 				style={styles.downloadButton}
 				onPress={() => {
-					ref.current.capture().then((uri: any) => {
-						console.log("Captured URI", uri);
-						setUri(uri);
-					});
+					/* 
+					TODO: Fix not working on first press
+					*/
 					const options = {
 						url: uri,
-						message: "Generated this palette using the #HexSplash app!",
+						message: "Generated this palette using the #HexSplash app!\nhttps://github.com/ChitrakshTarun/HexSplash",
 					};
 					Share.open(options);
 				}}
