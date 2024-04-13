@@ -14,10 +14,10 @@ Color palette generator app, generating 5 random colours for being used as desig
 ### Dependencies
 
 - `expo-router` File-based Routing & Navigation
-- `react-native-reanimated` App Animations
-- `react-native-gesture-handler` Gesture Handling
 - `expo-linear-gradient` Gradient Backgrounds
 - `expo-font` Google Fonts
+- `react-native-reanimated` App Animations
+- `react-native-gesture-handler` Gesture Handling
 - `react-native-view-shot` Exporting Palette as Image
 - `react-native-share` Sharing Palette
 

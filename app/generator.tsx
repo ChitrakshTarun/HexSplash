@@ -17,7 +17,10 @@ const Generator = () => {
 	};
 
 	const [modalVisible, setModalVisible] = useState(false);
-
+	/* 
+	TODO: I honestly need to rewrite this entire logic. 💀
+	Look into a way to make this dynamic, so as to be able to add more color views as well as remove the requirement of so many redundant useStates.
+	*/
 	const [color1, setColor1] = useState<string>(getRandomHexCode);
 	const [color2, setColor2] = useState<string>(getRandomHexCode);
 	const [color3, setColor3] = useState<string>(getRandomHexCode);

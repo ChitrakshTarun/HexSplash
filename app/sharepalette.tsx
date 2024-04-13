@@ -6,6 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
 import ViewShot from "react-native-view-shot";
 import Share from "react-native-share";
 
+/* 
+TODO: Add Download functionality as well. Save to an album named HexSplash into the user's gallery.
+TODO: Improve UI of this page as well as the way the color palette looks.
+*/
 const SharePalette = () => {
 	const { color1, color2, color3, color4, color5 } = useLocalSearchParams();
 	const ref = useRef();
@@ -46,7 +50,7 @@ const SharePalette = () => {
 					});
 					const options = {
 						url: uri,
-						message: "Generated this palette using the HexSplash app!",
+						message: "Generated this palette using the #HexSplash app!",
 					};
 					Share.open(options);
 				}}
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
 	},
 	paletteContainer: {
 		width: "95%",
+		backgroundColor: "#fff",
 		aspectRatio: 1,
 		borderWidth: 1,
 		borderRadius: 12,
@@ -96,6 +101,7 @@ const styles = StyleSheet.create({
 	},
 	colorText: {
 		fontSize: 22,
+		color: "#000",
 		fontWeight: "bold",
 	},
 	downloadButton: {
