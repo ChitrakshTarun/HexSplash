@@ -7,6 +7,7 @@ import Colors from "@/constants/Colors";
 
 const Generator = () => {
 	const router = useRouter();
+	/* FUNCTION: Generates a random hex code everytime the function is rendered. */
 	const getRandomHexCode = (): string => {
 		const letters = "0123456789ABCDEF";
 		let hexCode = "#";
@@ -15,29 +16,14 @@ const Generator = () => {
 		}
 		return hexCode;
 	};
-
-	const [modalVisible, setModalVisible] = useState(false);
+	/* useStates: InfoModal's visibility | HexCodes | Locks on Colors */
+	const [modalVisible, setModalVisible] = useState<boolean>(false);
+	const [colorCode, setColorCode] = useState<string[]>(Array.from({ length: 5 }, () => getRandomHexCode()));
+	const [locks, setLocks] = useState<boolean[]>(new Array(5).fill(false));
 	/* 
-	TODO: I honestly need to rewrite this entire logic. 💀
-	Look into a way to make this dynamic, so as to be able to add more color views as well as remove the requirement of so many redundant useStates.
+	FUNCTION: Identify if color is light or dark.
+	(Copilot clutched out on this code. Function finds the luma of the color and returns if it is < 128. Using this to determine whether the text above the color should be white or black.)
 	*/
-	const [color1, setColor1] = useState<string>(getRandomHexCode);
-	const [color2, setColor2] = useState<string>(getRandomHexCode);
-	const [color3, setColor3] = useState<string>(getRandomHexCode);
-	const [color4, setColor4] = useState<string>(getRandomHexCode);
-	const [color5, setColor5] = useState<string>(getRandomHexCode);
-
-	const [lock1, setLock1] = useState<boolean>(false);
-	const [lock2, setLock2] = useState<boolean>(false);
-	const [lock3, setLock3] = useState<boolean>(false);
-	const [lock4, setLock4] = useState<boolean>(false);
-	const [lock5, setLock5] = useState<boolean>(false);
-
-	/* 
-		Copilot clutched out on this code. 
-		Function finds the luma of the color and returns if it is < 128.
-		Using this to determine whether the text above the color should be white or black.
-		*/
 	const isColorDark = (color: string): boolean => {
 		const c = color.substring(1);
 		const rgb = parseInt(c, 16);
@@ -47,107 +33,57 @@ const Generator = () => {
 		const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 		return luma < 128;
 	};
-
 	const generateRandomHexCodes = (): void => {
-		lock1 ? null : setColor1(getRandomHexCode());
-		lock2 ? null : setColor2(getRandomHexCode());
-		lock3 ? null : setColor3(getRandomHexCode());
-		lock4 ? null : setColor4(getRandomHexCode());
-		lock5 ? null : setColor5(getRandomHexCode());
-	};
-
-	const testFunction = (): void => {
-		console.log("Hello World!");
+		colorCode.forEach((color, index) => {
+			if (!locks[index]) {
+				/* 
+				Needed to copilot to identify how to only set the color code for one of the views.
+				TODO: Revise spread operator and more array methods.
+				*/
+				setColorCode((prevColorCode) => {
+					const newColorCode = [...prevColorCode];
+					newColorCode[index] = getRandomHexCode();
+					return newColorCode;
+				});
+			}
+		});
 	};
 
 	return (
 		<View style={styles.container}>
-			{/* VIEW 1 */}
-			<Pressable
-				onPress={() => (lock1 ? null : setColor1(getRandomHexCode))}
-				style={[styles.view, { backgroundColor: color1 }]}
-			>
-				<Text style={[styles.text, { color: isColorDark(color1) ? "white" : "black" }]}>{color1}</Text>
+			{colorCode.map((color, index) => (
 				<Pressable
-					style={styles.lockContainer}
-					onPress={() => (lock1 ? setLock1(false) : setLock1(true))}
+					key={index}
+					onPress={() =>
+						locks[index]
+							? null
+							: setColorCode((prevColors) => {
+									const newColors = [...prevColors];
+									newColors[index] = getRandomHexCode();
+									return newColors;
+							  })
+					}
+					style={[styles.view, { backgroundColor: color }]}
 				>
-					<Ionicons
-						name={lock1 ? "lock-closed" : "lock-open"}
-						color={isColorDark(color1) ? "white" : "black"}
-						size={28}
-					/>
+					<Text style={[styles.text, { color: isColorDark(color) ? "white" : "black" }]}>{color}</Text>
+					<Pressable
+						style={styles.lockContainer}
+						onPress={() =>
+							setLocks((prevLocks) => {
+								const newLocks = [...prevLocks];
+								newLocks[index] = !newLocks[index];
+								return newLocks;
+							})
+						}
+					>
+						<Ionicons
+							name={locks[index] ? "lock-closed" : "lock-open"}
+							color={isColorDark(color) ? "white" : "black"}
+							size={28}
+						/>
+					</Pressable>
 				</Pressable>
-			</Pressable>
-			{/* VIEW 2 */}
-			<Pressable
-				onPress={() => (lock2 ? null : setColor2(getRandomHexCode))}
-				style={[styles.view, { backgroundColor: color2 }]}
-			>
-				<Text style={[styles.text, { color: isColorDark(color2) ? "white" : "black" }]}>{color2}</Text>
-				<Pressable
-					style={styles.lockContainer}
-					onPress={() => (lock2 ? setLock2(false) : setLock2(true))}
-				>
-					<Ionicons
-						name={lock2 ? "lock-closed" : "lock-open"}
-						color={isColorDark(color2) ? "white" : "black"}
-						size={28}
-					/>
-				</Pressable>
-			</Pressable>
-			{/* VIEW 3 */}
-			<Pressable
-				onPress={() => (lock3 ? null : setColor3(getRandomHexCode))}
-				style={[styles.view, { backgroundColor: color3 }]}
-			>
-				<Text style={[styles.text, { color: isColorDark(color3) ? "white" : "black" }]}>{color3}</Text>
-				<Pressable
-					style={styles.lockContainer}
-					onPress={() => (lock3 ? setLock3(false) : setLock3(true))}
-				>
-					<Ionicons
-						name={lock3 ? "lock-closed" : "lock-open"}
-						color={isColorDark(color3) ? "white" : "black"}
-						size={28}
-					/>
-				</Pressable>
-			</Pressable>
-			{/* VIEW 4 */}
-			<Pressable
-				onPress={() => (lock4 ? null : setColor4(getRandomHexCode))}
-				style={[styles.view, { backgroundColor: color4 }]}
-			>
-				<Text style={[styles.text, { color: isColorDark(color4) ? "white" : "black" }]}>{color4}</Text>
-				<Pressable
-					style={styles.lockContainer}
-					onPress={() => (lock4 ? setLock4(false) : setLock4(true))}
-				>
-					<Ionicons
-						name={lock4 ? "lock-closed" : "lock-open"}
-						color={isColorDark(color4) ? "white" : "black"}
-						size={28}
-						onPress={() => (lock4 ? setLock4(false) : setLock4(true))}
-					/>
-				</Pressable>
-			</Pressable>
-			{/* VIEW 5 */}
-			<Pressable
-				onPress={() => (lock5 ? null : setColor5(getRandomHexCode))}
-				style={[styles.view, { backgroundColor: color5 }]}
-			>
-				<Text style={[styles.text, { color: isColorDark(color5) ? "white" : "black" }]}>{color5}</Text>
-				<Pressable
-					style={styles.lockContainer}
-					onPress={() => (lock5 ? setLock5(false) : setLock5(true))}
-				>
-					<Ionicons
-						name={lock5 ? "lock-closed" : "lock-open"}
-						color={isColorDark(color5) ? "white" : "black"}
-						size={28}
-					/>
-				</Pressable>
-			</Pressable>
+			))}
 			<View style={styles.buttonsContainer}>
 				<Pressable
 					onPress={() => {
@@ -180,29 +116,28 @@ const Generator = () => {
 
 				<Pressable
 					onPress={() => {
-						setLock1(false);
-						setLock2(false);
-						setLock3(false);
-						setLock4(false);
-						setLock5(false);
+						setLocks([false]);
 					}}
 				>
 					<Ionicons
 						name="lock-open-outline"
 						color={"#000000"}
-						size={22}
+						size={24}
 					/>
 				</Pressable>
 				<Pressable
 					onPress={() => {
 						router.push({
 							pathname: "/sharepalette",
+							/* 
+							TODO: Rewrite this section of the code to pass the entire array instead of individually doing it.
+							*/
 							params: {
-								color1: color1,
-								color2: color2,
-								color3: color3,
-								color4: color4,
-								color5: color5,
+								color1: colorCode[0],
+								color2: colorCode[1],
+								color3: colorCode[2],
+								color4: colorCode[3],
+								color5: colorCode[4],
 							},
 						});
 					}}
@@ -210,7 +145,7 @@ const Generator = () => {
 					<Ionicons
 						name="share-outline"
 						color={"#000000"}
-						size={22}
+						size={24}
 					/>
 				</Pressable>
 			</View>
@@ -238,12 +173,12 @@ const styles = StyleSheet.create({
 	},
 	buttonsContainer: {
 		backgroundColor: Colors.light.background,
-		flex: 0.25,
+		flex: 0.3,
 		flexDirection: "row",
 		justifyContent: "space-around",
 		alignItems: "center",
 		paddingVertical: 14,
-		// gap: 8,
+		paddingHorizontal: 5,
 	},
 	button: {
 		paddingHorizontal: 20,
