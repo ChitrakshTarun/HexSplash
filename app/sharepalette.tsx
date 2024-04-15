@@ -50,9 +50,6 @@ const SharePalette = () => {
 			<Pressable
 				style={styles.downloadButton}
 				onPress={() => {
-					/* 
-					TODO: Fix not working on first press
-					*/
 					const options = {
 						url: uri,
 						message: "Generated this palette using the #HexSplash app!\nhttps://github.com/ChitrakshTarun/HexSplash",

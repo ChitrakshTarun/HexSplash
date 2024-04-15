@@ -43,10 +43,9 @@ const index = () => {
 				<Text style={styles.subTextLogo}>for your design </Text>
 			</View>
 			<View style={{ flex: 1 }}></View>
-			{/* TODO: Replace this with router.replace once testing is over. */}
 			<Pressable
 				style={styles.button}
-				onPress={() => router.push("/generator")}
+				onPress={() => router.replace("/generator")}
 			>
 				<Ionicons
 					name="color-palette-outline"

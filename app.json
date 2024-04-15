@@ -1,48 +1,43 @@
 {
-  "expo": {
-    "name": "HexSplash",
-    "slug": "HexSplash",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.chitrakshtarun.HexSplash"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "ee5579fb-cb09-4bba-90c9-85ec326cb7f4"
-      }
-    }
-  }
+	"expo": {
+		"name": "HexSplash",
+		"slug": "HexSplash",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "cover"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.chitrakshtarun.HexSplash"
+		},
+		"web": {
+			"bundler": "metro",
+			"output": "static",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"plugins": ["expo-router"],
+		"experiments": {
+			"typedRoutes": true
+		},
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "ee5579fb-cb09-4bba-90c9-85ec326cb7f4"
+			}
+		}
+	}
 }
