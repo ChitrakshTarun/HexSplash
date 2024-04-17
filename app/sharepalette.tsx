@@ -5,46 +5,37 @@ import { useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import ViewShot from "react-native-view-shot";
 import Share from "react-native-share";
+import { isColorDark } from "@/components/IsColorDark";
 
 /* 
 TODO: Add Download functionality as well. Save to an album named HexSplash into the user's gallery.
-TODO: Improve UI of this page as well as the way the color palette looks.
 */
 const SharePalette = () => {
-	const { color1, color2, color3, color4, color5 } = useLocalSearchParams();
+	const { colors } = useLocalSearchParams();
+	const parsedColors = JSON.parse(colors);
 	const ref = useRef();
 	const [uri, setUri] = useState<string>("Test");
 	useEffect(() => {
 		ref.current.capture().then((uri: any) => {
-			console.log("Captured URI", uri);
+			// console.log("Captured URI", uri);
 			setUri(uri);
 		});
 	}, []);
 	return (
 		<View style={styles.container}>
+			<Text style={styles.headerText}>My Color Palette | HexSplash</Text>
 			<ViewShot ref={ref}>
 				<View style={styles.paletteContainer}>
-					<Text style={styles.headerText}>My Color Palette | HexSplash</Text>
-					<View style={styles.paletteElementContainer}>
-						<View style={{ backgroundColor: color1.toString(), width: 40, height: 40 }}></View>
-						<Text style={styles.colorText}>{color1}</Text>
-					</View>
-					<View style={styles.paletteElementContainer}>
-						<View style={{ backgroundColor: color2.toString(), width: 40, height: 40 }}></View>
-						<Text style={styles.colorText}>{color2}</Text>
-					</View>
-					<View style={styles.paletteElementContainer}>
-						<View style={{ backgroundColor: color3.toString(), width: 40, height: 40 }}></View>
-						<Text style={styles.colorText}>{color3}</Text>
-					</View>
-					<View style={styles.paletteElementContainer}>
-						<View style={{ backgroundColor: color4.toString(), width: 40, height: 40 }}></View>
-						<Text style={styles.colorText}>{color4}</Text>
-					</View>
-					<View style={styles.paletteElementContainer}>
-						<View style={{ backgroundColor: color5.toString(), width: 40, height: 40 }}></View>
-						<Text style={styles.colorText}>{color5}</Text>
-					</View>
+					{parsedColors.map((color: string, index: number) => (
+						<View
+							key={index}
+							style={styles.paletteElementContainer}
+						>
+							<View style={{ backgroundColor: color, width: "100%", height: "100%" }}>
+								<Text style={[styles.colorText, { color: isColorDark(color) ? "white" : "black" }]}>{color}</Text>
+							</View>
+						</View>
+					))}
 				</View>
 			</ViewShot>
 			<Pressable
@@ -71,8 +62,8 @@ const SharePalette = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		paddingTop: 30,
 		backgroundColor: "#fff",
-		justifyContent: "center",
 		gap: 64,
 		alignItems: "center",
 	},
@@ -85,17 +76,14 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		aspectRatio: 1,
 		borderWidth: 1,
-		borderRadius: 12,
-		flexWrap: "wrap",
 		justifyContent: "center",
 		alignItems: "flex-start",
-		paddingHorizontal: 30,
-		gap: 20,
 	},
 	paletteElementContainer: {
 		flexDirection: "row",
+		flex: 1,
 		height: 40,
-		width: "90%",
+		width: "100%",
 		borderRadius: 20,
 		gap: 20,
 		justifyContent: "flex-start",
@@ -103,8 +91,9 @@ const styles = StyleSheet.create({
 	},
 	colorText: {
 		fontSize: 22,
-		color: "#000",
 		fontWeight: "bold",
+		left: 5,
+		top: 5,
 	},
 	downloadButton: {
 		flexDirection: "row",

@@ -4,10 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 import InfoModal from "@/components/InfoModal";
 import { useRouter } from "expo-router";
 import Colors from "@/constants/Colors";
+import { isColorDark } from "@/components/IsColorDark";
 
 const Generator = () => {
 	const router = useRouter();
-	/* FUNCTION: Generates a random hex code everytime the function is rendered. */
 	const getRandomHexCode = (): string => {
 		const letters = "0123456789ABCDEF";
 		let hexCode = "#";
@@ -20,19 +20,6 @@ const Generator = () => {
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
 	const [colorCode, setColorCode] = useState<string[]>(Array.from({ length: 5 }, () => getRandomHexCode()));
 	const [locks, setLocks] = useState<boolean[]>(new Array(5).fill(false));
-	/* 
-	FUNCTION: Identify if color is light or dark.
-	(Copilot clutched out on this code. Function finds the luma of the color and returns if it is < 128. Using this to determine whether the text above the color should be white or black.)
-	*/
-	const isColorDark = (color: string): boolean => {
-		const c = color.substring(1);
-		const rgb = parseInt(c, 16);
-		const r = (rgb >> 16) & 0xff;
-		const g = (rgb >> 8) & 0xff;
-		const b = (rgb >> 0) & 0xff;
-		const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-		return luma < 128;
-	};
 	const generateRandomHexCodes = (): void => {
 		colorCode.forEach((color, index) => {
 			if (!locks[index]) {
@@ -129,15 +116,8 @@ const Generator = () => {
 					onPress={() => {
 						router.push({
 							pathname: "/sharepalette",
-							/* 
-							TODO: Rewrite this section of the code to pass the entire array instead of individually doing it.
-							*/
 							params: {
-								color1: colorCode[0],
-								color2: colorCode[1],
-								color3: colorCode[2],
-								color4: colorCode[3],
-								color5: colorCode[4],
+								colors: JSON.stringify([...colorCode]),
 							},
 						});
 					}}
