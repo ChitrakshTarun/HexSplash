@@ -1,6 +1,6 @@
 ﻿# <img src="https://github.com/ChitrakshTarun/HexSplash/blob/main/assets/images/icon.png" height="32"> HexSplash
 
-Color palette generator app, generating 5 random colours for being used as design inspiration to be used in a design. The app functions on the frontend, and uses a randomiser function to randomise the colors on the screen.
+HexSplash is a color-palette generator mobile app for design inspiration, inspired by the Coolors tool. HexSplash generates a palette of 5 random colors, which can be randomised based on the user's preference. The app functions on the frontend, and uses a randomiser function to randomise the colors on the screen.
 
 # Tech Stack
 
@@ -42,7 +42,7 @@ Color palette generator app, generating 5 random colours for being used as desig
 1. Clone this Repository, then change directory to the HexSplash directory.
 
 ```
-https://github.com/ChitrakshTarun/HexSplash.git
+git clone https://github.com/ChitrakshTarun/HexSplash.git
 ```
 
 ```
