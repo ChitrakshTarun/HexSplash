@@ -64,9 +64,3 @@ npx expo prebuild
 ```
 npx expo run:android
 ```
-
-# Contributions
-
-I have developed this app as a learning project to learn about the concepts of React Native, Expo and JavaScript/TypeScript. I am open to open-source contributions towards this app, if any, which can help in optimising the code or improving/adding the features inside the app.
-
-[ This project has been inspired from the https://coolors.co/ tool. ]
